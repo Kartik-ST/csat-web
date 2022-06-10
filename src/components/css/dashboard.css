@@ -8,7 +8,7 @@
 .content_box {
     border: solid 1px black;
     width: 70%;
-    height: auto;
+    height: 60vh;
     margin: 5% 0;
     display: flex;
     flex-direction: column;
@@ -18,10 +18,18 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.option_input{
- margin-right: 5px;
+.intro_text{
+    display: flex;
+    justify-content: center;
 }
 
-.options_value{
-    margin-right: 14px;
+.text_area{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.text_inner_container{
+    width: 75%;
+    height: 30vh;
 }

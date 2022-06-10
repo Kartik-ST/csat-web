@@ -1,0 +1,21 @@
+.question_container{
+    height: auto;
+    width:70%;
+}
+
+.options_section{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.question_box{
+    border-bottom: solid 0.2px #e9ecef;
+}
+
+.survey_button{
+    width: 25%;
+    border-radius: 5px;
+    box-sizing: border-box;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+}
