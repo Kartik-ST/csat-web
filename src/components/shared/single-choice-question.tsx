@@ -1,48 +1,92 @@
 import '../css/survey-form.css'
 import Label from './label'
-import InputField from './input-field'
-import React, { useId } from 'react'
+import React, { useId, useState } from 'react'
+import RadioInput from './radio-input'
 
 
 
-export default function SingleChoiceQuestion(props: {
-    question: string,
-    options: string[]
-}) {
+export default function SingleChoiceQuestion(props: any) {
+    const {
+        questionObject: {
+            question,
+            choices,
+            childQuestionOption,
+            type,
+            isParent,
+            status,
+            childSchema
+        }
+    } = props || {}
+
+    // ID Hook for generatingb dynamic ID
     const id = useId();
 
-    function handelInput() {
+
+    // useState for setting the value from the form
+    const [response, setResponse] = useState({
+        selection: "selected",
+        selected: ""
+    });
+
+
+    // Calling Event onChange; and setting value of selection
+    // From chield component
+
+    const handelInput = (event: any) => {
+        const key = event.target.name;
+        const value = event.target.value;
+        setResponse({ ...response, [key]: value })
 
     }
 
+    //veriable declaration for storing multiple
+    // option templates
     const option: any = []
 
-    props.options.forEach((element, i) => {
+
+
+    // Creating and pushing all options value inside a Array
+    choices.forEach((element: any, i: number) => {
         option.push(
-            <React.Fragment key={id+i}>
-                <InputField inputType='radio'
-                    id={id}
-                    className="option_input"
-                    defaultValue=''
-                    onChange={handelInput}
-                    key={i} />
-                <Label labelName="option"
-                    className='options_value'
-                    text={element} 
-                    />
-            </React.Fragment>
+            <RadioInput
+                onChange={handelInput}
+                id={id}
+                text={element}
+                value={element}
+                name={response.selection}
+                className="options_section"
+                key={i}
+            />
         )
     })
+
+    // Rendering this component
     return (
         <>
             <div className="question_container mt-5">
                 <Label labelName="Question"
                     className="form-label"
-                    text={props.question} />
+                    text={question} />
             </div>
             <div className="options_section">
                 {option}
             </div>
+
+            {/* *********************************************************************** */}
+            {/* Calling Recursion for this component for renduring same component */}
+            {/* *********************************************************************** */}
+            {
+                childSchema &&
+                childSchema.length > 0 &&
+                (childQuestionOption.indexOf(response.selected) != -1) &&
+                childSchema.
+                    map((val: any, i: number) =>
+                        <div className="question_box mt-4" key={i}>
+                            <SingleChoiceQuestion questionObject={val} />
+                        </div>
+                    )
+            }
+
         </>
     )
 }

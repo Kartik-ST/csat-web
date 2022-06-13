@@ -20,8 +20,7 @@ export default function SurveyForm() {
         if (element.type.toLowerCase() === "radio") {
             questionArea.push(
                 <div className="question_box mt-4" key={i}>
-                    <SingleChoiceQuestion question={element.question}
-                        options={element.choices} />
+                    <SingleChoiceQuestion questionObject={element} />
                 </div>
             )
         }
