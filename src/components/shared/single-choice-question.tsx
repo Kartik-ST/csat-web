@@ -1,6 +1,6 @@
 import '../css/survey-form.css'
 import Label from './label'
-import React, { useId, useState } from 'react'
+import { useId, useState } from 'react'
 import RadioInput from './radio-input'
 
 
@@ -59,7 +59,7 @@ export default function SingleChoiceQuestion(props: any) {
             />
         )
     })
-
+    console.log(response)
     // Rendering this component
     return (
         <>
@@ -78,13 +78,12 @@ export default function SingleChoiceQuestion(props: any) {
             {
                 childSchema &&
                 childSchema.length > 0 &&
-                (childQuestionOption.indexOf(response.selected) != -1) &&
-                childSchema.
-                    map((val: any, i: number) =>
-                        <div className="question_box mt-4" key={i}>
-                            <SingleChoiceQuestion questionObject={val} />
-                        </div>
-                    )
+                (childQuestionOption.indexOf(response.selected) !== -1) &&
+                childSchema.map((val: any, i: number) =>
+                    <div className="question_box mt-4" key={i}>
+                        <SingleChoiceQuestion questionObject={val} />
+                    </div>
+                )
             }
 
         </>

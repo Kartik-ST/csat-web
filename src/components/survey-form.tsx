@@ -3,13 +3,14 @@ import './css/survey-form.css';
 
 import Label from "./shared/label";
 import InputField from "./shared/input-field";
-import { useState } from "react";
+import { useId, useState } from "react";
 import SingleChoiceQuestion from "./shared/single-choice-question";
 import { dataSet } from "../dataset";
+import TextAreaSection from "./shared/textArea"
 
 export default function SurveyForm() {
     const questionArea: any = [];
-
+    const id=useId()
     const [formValue, setFormValue] = useState({
         name: "",
         company: "",
@@ -67,6 +68,14 @@ export default function SurveyForm() {
 
                             <div className="row">
                                 {questionArea}
+                            </div>
+
+                            <div className="row mt-5">
+                                <TextAreaSection id={id}
+                                    name={"commentReview"}
+                                    rows={4}
+                                    cols={40}
+                                    placeHolder={"Please enter your feedback"}/>
                             </div>
 
                             <div className="row button">

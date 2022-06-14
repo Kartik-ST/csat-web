@@ -1,0 +1,52 @@
+form {
+    position: relative;
+    /* top: 50%; */
+    /* left: 50%; */
+    width: 500px;
+    height: 100px;
+    border: 4px dashed rgb(58, 57, 57);
+    margin-bottom: 10px;
+}
+
+form p {
+    width: 100%;
+    height: 50%;
+    text-align: center;
+    line-height: 90px;
+    color: #1a1515;
+    font-family: Arial;
+}
+
+form input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+}
+
+button {
+    position: relative;
+    margin-top: 10%;
+    color: #fff;
+    background: #000000;
+    border: none;
+    margin-left: 25%;
+    width: 250px;
+    height: 35px;
+    border-radius: 4px;
+    transition: all .2s ease;
+    outline: none;
+    bottom: 0;
+}
+
+/* button:hover {
+    background: #149174;
+    color: #0C5645;
+} */
+
+/* button:active {
+    border: 0;
+} */
