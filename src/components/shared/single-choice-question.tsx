@@ -2,15 +2,17 @@ import '../css/survey-form.css'
 import Label from './label'
 import { useId, useState } from 'react'
 import RadioInput from './radio-input'
-
+import SurveyContext from '../context/surveyFormContext'
 
 
 export default function SingleChoiceQuestion(props: any) {
+    const contexData = SurveyContext()
     const {
         questionObject: {
-            question,
+            questionText,
             choices,
             childQuestionOption,
+            uniqueId,
             type,
             isParent,
             status,
@@ -23,25 +25,39 @@ export default function SingleChoiceQuestion(props: any) {
 
 
     // useState for setting the value from the form
-    const [response, setResponse] = useState({
-        selection: "selected",
+    const [response, setResponse] = useState([{
         selected: ""
-    });
+    }]);
 
 
     // Calling Event onChange; and setting value of selection
     // From chield component
-
+    let count = (response.length) - 1
     const handelInput = (event: any) => {
-        const key = event.target.name;
         const value = event.target.value;
-        setResponse({ ...response, [key]: value })
 
+        setResponse((prevRes: any) => [
+            ...prevRes,
+            {
+                "selected": value
+            }
+        ])
+
+
+        contexData.setValue({
+            question: questionText,
+            response: value,
+            uniqueId: uniqueId,
+            childQuestionOptions:childQuestionOption
+        })
     }
-
     //veriable declaration for storing multiple
     // option templates
     const option: any = []
+
+    console.log(contexData);
+
+
 
 
 
@@ -53,20 +69,20 @@ export default function SingleChoiceQuestion(props: any) {
                 id={id}
                 text={element}
                 value={element}
-                name={response.selection}
+                name={uniqueId}
                 className="options_section"
                 key={i}
             />
         )
     })
-    console.log(response)
+
     // Rendering this component
     return (
         <>
             <div className="question_container mt-5">
                 <Label labelName="Question"
                     className="form-label"
-                    text={question} />
+                    text={questionText} />
             </div>
             <div className="options_section">
                 {option}
@@ -78,7 +94,8 @@ export default function SingleChoiceQuestion(props: any) {
             {
                 childSchema &&
                 childSchema.length > 0 &&
-                (childQuestionOption.indexOf(response.selected) !== -1) &&
+                response.length > 0 &&
+                (childQuestionOption.indexOf(response[count].selected) !== -1) &&
                 childSchema.map((val: any, i: number) =>
                     <div className="question_box mt-4" key={i}>
                         <SingleChoiceQuestion questionObject={val} />
@@ -89,4 +106,3 @@ export default function SingleChoiceQuestion(props: any) {
         </>
     )
 }
-
