@@ -6,6 +6,9 @@ export default function RadioInput(props: {
     className: string,
     name: string
 }) {
+
+    
+
     return (
         <div className={props.className}>
             <input

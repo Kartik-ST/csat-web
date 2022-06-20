@@ -10,7 +10,7 @@ import TextAreaSection from "./shared/textArea"
 
 export default function SurveyForm() {
     const questionArea: any = [];
-    const id=useId()
+    const id = useId()
     const [formValue, setFormValue] = useState({
         name: "",
         company: "",
@@ -29,6 +29,10 @@ export default function SurveyForm() {
 
     const handelInput = () => {
 
+    }
+
+    const sumbmitForm = (event:any) => {
+        event.preventDefault()
     }
 
     return (
@@ -75,11 +79,11 @@ export default function SurveyForm() {
                                     name={"commentReview"}
                                     rows={4}
                                     cols={40}
-                                    placeHolder={"Please enter your feedback"}/>
+                                    placeHolder={"Please enter your feedback"} />
                             </div>
 
                             <div className="row button">
-                                <button className="btn btn-dark mt-5 survey_button">Submit</button>
+                                <button className="btn btn-dark mt-5 survey_button" onClick={sumbmitForm}>Submit</button>
                             </div>
                         </div>
                     </div>
