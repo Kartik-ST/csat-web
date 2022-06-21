@@ -9,8 +9,8 @@ function App() {
   return (
     <div>
       {/* <Dashboard/> */}
-      <SurveyForm/>
-      {/* <EmailComponent/> */}
+      {/* <SurveyForm/> */}
+      <EmailComponent/>
     </div>
   );
 }
